@@ -1,4 +1,3 @@
-
 using BP.EfCore.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,10 +7,8 @@ namespace  Bp.EfCore.Data.Context
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
-
         }
-
-        protected ApplicationDbContext()
+        public ApplicationDbContext()
         {
         }
 
