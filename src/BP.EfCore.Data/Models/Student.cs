@@ -12,7 +12,7 @@ namespace BP.EfCore.Data.Models
         public int Number { get; set; }
         public int AddressId { get; set; }
         public virtual StudentAddress StudentAddress { get; set; }
-        public ICollection<StudentBook> Books { get; set; }
+        public virtual ICollection<StudentBook> Books { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
     }
 }

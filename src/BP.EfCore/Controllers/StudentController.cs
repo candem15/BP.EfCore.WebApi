@@ -19,9 +19,27 @@ namespace BP.EfCore.Controllers
 
         }
 
+        private async Task eagerLoadings()
+        {
+            var students = await applicationDbContext.Students
+                .Include(i => i.Books)
+                .FirstOrDefaultAsync(i => i.Id == 3);
+        }
+
+        private async Task lazyLoadings()
+        {
+            var students = await applicationDbContext.Students
+                .FirstOrDefaultAsync(i => i.Id == 3);
+
+            var books = students.Books;
+        }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            //await eagerLoadings();
+            await lazyLoadings();
+
             Student filter = new Student() { FirstName = "Eray" };
 
             var students = applicationDbContext.Students.AsQueryable();

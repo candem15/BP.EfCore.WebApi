@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore.Proxies;
 
 namespace BP.EfCore
 {
@@ -27,6 +27,7 @@ namespace BP.EfCore
             services.AddLogging();
             services.AddDbContext<ApplicationDbContext>(options =>
             {
+                options.UseLazyLoadingProxies(); //Entities that will use lazyLoading must declared with virtual keyword. In our case that entities belongs to BP.EfCore.Data.Models namepace.
                 options.UseSqlServer(SqlServer.SqlServerDbConnection);
                 options.EnableSensitiveDataLogging();
             });
